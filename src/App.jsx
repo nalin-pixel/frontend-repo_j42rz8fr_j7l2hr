@@ -83,15 +83,15 @@ export default function App() {
 
   return (
     <Layout>
-      <section className="space-y-6">
+      <section className="space-y-8">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
           <div className="space-y-1">
-            <h1 className="text-2xl sm:text-3xl font-bold">Pengelolaan Pasangan Kandidat OSIS</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Pengelolaan Pasangan Kandidat OSIS</h1>
             <p className="text-gray-600">Kelola data pasangan calon ketua dan wakil secara profesional.</p>
           </div>
           <button
             onClick={handleAdd}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl font-medium shadow-sm hover:shadow transition-transform hover:-translate-y-0.5"
             style={{ background: accent, color: "#111" }}
           >
             <Plus className="w-4 h-4" /> Tambah Pasangan
@@ -107,17 +107,18 @@ export default function App() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Cari nama/kelas ketua atau wakil..."
-              className="w-full pl-10 pr-3 py-2 rounded-lg border focus:outline-none focus:ring-2"
+              className="w-full pl-10 pr-3 py-2 rounded-xl border focus:outline-none focus:ring-2"
+              style={{ outline: "none", boxShadow: `0 0 0 0px rgba(0,0,0,0)`, WebkitTapHighlightColor: "transparent" }}
             />
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {filtered.map((pair) => (
             <CandidateCard key={pair.id} data={pair} onEdit={handleEdit} onDelete={handleDelete} />
           ))}
           {filtered.length === 0 && (
-            <div className="col-span-full text-center text-gray-600 py-12 border-2 border-dashed rounded-xl">
+            <div className="col-span-full text-center text-gray-600 py-12 border-2 border-dashed rounded-2xl bg-white">
               Belum ada data yang cocok dengan pencarian.
             </div>
           )}

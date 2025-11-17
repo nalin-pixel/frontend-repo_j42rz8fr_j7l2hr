@@ -6,19 +6,20 @@ export default function Layout({ children }) {
   const accent = "#ffee00";
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900">
-      <div className="fixed inset-0 -z-10 opacity-10 pointer-events-none" aria-hidden>
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white text-gray-900">
+      {/* Ambient glow accents */}
+      <div className="fixed inset-0 -z-10 pointer-events-none" aria-hidden>
         <div
-          className="absolute -top-24 -left-24 w-[520px] h-[520px] rounded-full blur-3xl"
+          className="absolute -top-28 -left-20 w-[520px] h-[520px] rounded-full blur-3xl opacity-20"
           style={{ background: accent }}
         />
         <div
-          className="absolute -bottom-24 -right-24 w-[520px] h-[520px] rounded-full blur-3xl"
+          className="absolute -bottom-28 -right-24 w-[560px] h-[560px] rounded-full blur-3xl opacity-20"
           style={{ background: accent }}
         />
       </div>
 
-      <header className="sticky top-0 z-20 border-b border-gray-200 bg-white/80 backdrop-blur">
+      <header className="sticky top-0 z-20 border-b border-gray-200/60 bg-white/70 backdrop-blur-xl">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <button
@@ -30,19 +31,19 @@ export default function Layout({ children }) {
             </button>
             <div className="flex items-center gap-2">
               <div
-                className="w-8 h-8 rounded-md"
+                className="w-8 h-8 rounded-md shadow-inner"
                 style={{ background: accent }}
               />
-              <span className="font-semibold">Admin OSIS</span>
+              <span className="font-semibold tracking-tight">Admin OSIS</span>
             </div>
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="hidden sm:flex items-center gap-2 text-sm px-3 py-1.5 rounded-full border border-gray-200 bg-white shadow-sm">
+            <div className="hidden sm:flex items-center gap-2 text-sm px-3 py-1.5 rounded-full border border-gray-200 bg-white/80 shadow-sm backdrop-blur">
               <Shield className="w-4 h-4" />
               <span>Status: Super Admin</span>
             </div>
-            <button className="inline-flex items-center gap-2 text-sm font-medium px-3 py-2 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 transition">
+            <button className="inline-flex items-center gap-2 text-sm font-medium px-3 py-2 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 transition shadow-sm">
               <LogOut className="w-4 h-4" /> Keluar
             </button>
           </div>
@@ -69,18 +70,18 @@ export default function Layout({ children }) {
 function SidebarItem({ icon: Icon, label, active, accent }) {
   return (
     <button
-      className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition border ${
+      className={`w-full flex items-center gap-3 px-3 py-2 rounded-xl text-sm transition border backdrop-blur shadow-sm ${
         active
-          ? "bg-white shadow border-gray-200"
-          : "hover:bg-gray-100 border-transparent"
+          ? "bg-white/80 border-gray-200"
+          : "hover:bg-white/70 border-transparent"
       }`}
     >
       <Icon className="w-4 h-4" />
       <span className="truncate">{label}</span>
       {active && (
         <span
-          className="ml-auto w-2 h-2 rounded-full"
-          style={{ background: accent }}
+          className="ml-auto w-2.5 h-2.5 rounded-full ring-2 ring-offset-2 ring-offset-white"
+          style={{ background: accent, boxShadow: "0 0 0 3px rgba(0,0,0,0.02)" }}
         />
       )}
     </button>

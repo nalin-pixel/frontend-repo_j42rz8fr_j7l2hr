@@ -64,35 +64,22 @@ export default function CandidateForm({ open, onClose, onSubmit, initial }) {
 
   return (
     <div className="fixed inset-0 z-30 flex items-center justify-center bg-black/40 p-4">
-      <div className="w-full max-w-3xl bg-white rounded-2xl shadow-xl overflow-hidden">
-        <div className="flex items-center justify-between px-6 py-4 border-b">
-          <h3 className="font-semibold">{initial ? "Edit Pasangan" : "Tambah Pasangan"}</h3>
-          <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-lg">
-            <X className="w-5 h-5" />
-          </button>
+      <div className="w-full max-w-3xl bg-white rounded-2xl shadow-2xl overflow-hidden">
+        <div className="relative">
+          <div className="absolute inset-x-0 -top-24 h-48 opacity-10 blur-2xl" style={{ background: accent }} />
+          <div className="flex items-center justify-between px-6 py-4 border-b bg-white/70 backdrop-blur">
+            <h3 className="font-semibold tracking-tight">{initial ? "Edit Pasangan" : "Tambah Pasangan"}</h3>
+            <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-lg">
+              <X className="w-5 h-5" />
+            </button>
+          </div>
         </div>
 
         <form onSubmit={submit} className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
           <fieldset className="space-y-3">
             <legend className="text-sm font-semibold">Calon Ketua</legend>
-            <div className="space-y-1">
-              <label className="text-sm">Nama</label>
-              <input
-                value={form.leader.name}
-                onChange={(e) => handleChange("leader", "name", e.target.value)}
-                className="w-full px-3 py-2 rounded-lg border focus:outline-none focus:ring-2"
-                required
-              />
-            </div>
-            <div className="space-y-1">
-              <label className="text-sm">Kelas</label>
-              <input
-                value={form.leader.className}
-                onChange={(e) => handleChange("leader", "className", e.target.value)}
-                className="w-full px-3 py-2 rounded-lg border"
-                required
-              />
-            </div>
+            <Input label="Nama" value={form.leader.name} onChange={(v) => handleChange("leader", "name", v)} required />
+            <Input label="Kelas" value={form.leader.className} onChange={(v) => handleChange("leader", "className", v)} required />
             <div className="space-y-1">
               <label className="text-sm">URL Foto</label>
               <div className="flex gap-2">
@@ -100,9 +87,9 @@ export default function CandidateForm({ open, onClose, onSubmit, initial }) {
                   value={form.leader.photo}
                   onChange={(e) => handleChange("leader", "photo", e.target.value)}
                   placeholder="https://..."
-                  className="flex-1 px-3 py-2 rounded-lg border"
+                  className="flex-1 px-3 py-2 rounded-lg border focus:outline-none focus:ring-2"
                 />
-                <button type="button" className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border bg-white">
+                <button type="button" className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border bg-white shadow-sm">
                   <Upload className="w-4 h-4" /> Upload
                 </button>
               </div>
@@ -111,24 +98,8 @@ export default function CandidateForm({ open, onClose, onSubmit, initial }) {
 
           <fieldset className="space-y-3">
             <legend className="text-sm font-semibold">Calon Wakil</legend>
-            <div className="space-y-1">
-              <label className="text-sm">Nama</label>
-              <input
-                value={form.deputy.name}
-                onChange={(e) => handleChange("deputy", "name", e.target.value)}
-                className="w-full px-3 py-2 rounded-lg border focus:outline-none focus:ring-2"
-                required
-              />
-            </div>
-            <div className="space-y-1">
-              <label className="text-sm">Kelas</label>
-              <input
-                value={form.deputy.className}
-                onChange={(e) => handleChange("deputy", "className", e.target.value)}
-                className="w-full px-3 py-2 rounded-lg border"
-                required
-              />
-            </div>
+            <Input label="Nama" value={form.deputy.name} onChange={(v) => handleChange("deputy", "name", v)} required />
+            <Input label="Kelas" value={form.deputy.className} onChange={(v) => handleChange("deputy", "className", v)} required />
             <div className="space-y-1">
               <label className="text-sm">URL Foto</label>
               <div className="flex gap-2">
@@ -136,9 +107,9 @@ export default function CandidateForm({ open, onClose, onSubmit, initial }) {
                   value={form.deputy.photo}
                   onChange={(e) => handleChange("deputy", "photo", e.target.value)}
                   placeholder="https://..."
-                  className="flex-1 px-3 py-2 rounded-lg border"
+                  className="flex-1 px-3 py-2 rounded-lg border focus:outline-none focus:ring-2"
                 />
-                <button type="button" className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border bg-white">
+                <button type="button" className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border bg-white shadow-sm">
                   <Upload className="w-4 h-4" /> Upload
                 </button>
               </div>
@@ -151,7 +122,7 @@ export default function CandidateForm({ open, onClose, onSubmit, initial }) {
               value={form.visiMisi}
               onChange={(e) => handleChange(null, "visiMisi", e.target.value)}
               rows={3}
-              className="w-full px-3 py-2 rounded-lg border"
+              className="w-full px-3 py-2 rounded-lg border focus:outline-none focus:ring-2"
             />
           </div>
 
@@ -160,16 +131,16 @@ export default function CandidateForm({ open, onClose, onSubmit, initial }) {
             <input
               value={form.programs}
               onChange={(e) => handleChange(null, "programs", e.target.value)}
-              className="w-full px-3 py-2 rounded-lg border"
+              className="w-full px-3 py-2 rounded-lg border focus:outline-none focus:ring-2"
               placeholder="Kebersihan sekolah, Literasi pagi, ..."
             />
           </div>
 
           <div className="md:col-span-2 flex justify-end gap-3 pt-2">
-            <button type="button" onClick={onClose} className="px-4 py-2 rounded-lg border">Batal</button>
+            <button type="button" onClick={onClose} className="px-4 py-2 rounded-lg border bg-white hover:bg-gray-50">Batal</button>
             <button
               type="submit"
-              className="px-4 py-2 rounded-lg font-medium"
+              className="px-4 py-2 rounded-lg font-medium shadow-sm"
               style={{ background: accent, color: "#111" }}
             >
               Simpan
@@ -177,6 +148,20 @@ export default function CandidateForm({ open, onClose, onSubmit, initial }) {
           </div>
         </form>
       </div>
+    </div>
+  );
+}
+
+function Input({ label, value, onChange, required }) {
+  return (
+    <div className="space-y-1">
+      <label className="text-sm">{label}</label>
+      <input
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full px-3 py-2 rounded-lg border focus:outline-none focus:ring-2"
+        required={required}
+      />
     </div>
   );
 }
